@@ -1,0 +1,90 @@
+body {
+        background-image: url(Gen-Pass.jpg);
+        background-color: rgba(87, 97, 239, 0.888);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    width: 600px;
+    max-width: 95%;
+    padding: 20px;
+    border: 1px solid rgb(255 79 90);
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: rgba(250, 229, 229, 0.94);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(255 79 90);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.txt-color{
+    color: #002d8e;
+}
+
+.txt-bold{
+    font-weight: 400;
+}
+
+.slider-container {
+    position: relative;
+}
+
+.options-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.options-container label {
+    margin-right: 10px;
+}
+
+.slider-value {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.slider-value span {
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+form {
+    margin-bottom: 10px;
+}
+
+button {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px 10px;
+}
+
+#passwordOutput {
+    font-weight: bold;
+}
+
+  /* Media query for responsiveness */
+@media (max-width: 600px) {
+    .card {
+        width: 90%;
+    }
+}

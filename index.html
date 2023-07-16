@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gen-P@SS</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card txt-color">
+            <h1>Gen-P@SS</h1>
+            <div class="slider-container">
+                <label for="lengthSlider" class="txt-bold">Password Length:</label>
+                <div class="slider-value">
+                    <input type="range" id="lengthSlider" min="4" max="50">
+                    <span id="lengthOutput"></span>
+                </div>
+            </div>
+            <div class="options-container">
+                <label><input type="checkbox" id="lettersCheckbox" checked> Letters</label>
+                <label><input type="checkbox" id="numbersCheckbox" checked> Numbers</label>
+                <label><input type="checkbox" id="punctuationCheckbox" checked> Punctuation</label>
+            </div>
+            <button type="button" id="generateButton">Generate</button>
+            <div id="passwordOutput"></div>
+            <button type="button" id="copyButton">Copy</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
