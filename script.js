@@ -1,117 +1,68 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var lengthSlider = document.getElementById("lengthSlider");
-    var lengthOutput = document.getElementById("lengthOutput");
+//Slider function:
+window.onload = function() {
+    rangeSlide(4);
+};
 
-    lengthSlider.value = 8;
-    lengthOutput.textContent = lengthSlider.value;
-    lengthSlider.setAttribute("data-length", lengthSlider.value);
+function rangeSlide(value) {
+    const sliderValue = value < 4 ? 4 : value;
+    document.getElementById('rangeValue').innerHTML = value;
+}
 
-    lengthSlider.addEventListener("input", function () {
-        lengthOutput.textContent = lengthSlider.value;
-        lengthSlider.setAttribute("data-length", lengthSlider.value);
-    });
-});
+function generatePassword() {
+    const passwordLength = document.getElementById("passwordLength").value;
+    const lowercaseChar = document.getElementById("checkBox1").checked;
+    const uppercaseChar = document.getElementById("checkBox2").checked;
+    const numbers = document.getElementById("checkBox3").checked;
+    const symbols = document.getElementById("checkBox4").checked;
+    const passwordResult = document.getElementById("passwordResult");
 
-document
-    .getElementById("generateButton")
-    .addEventListener("click", function () {
-        var length = document.getElementById("lengthSlider").value;
-        var passwordOutput = document.getElementById("passwordOutput");
+    const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+    const numbersChars = "1234567890";
+    const symbolsChars = "!@#$%^&*()-_+=~{}[]|:;<>,.?/";
 
-        // Clear previous password
-        passwordOutput.textContent = "";
+    let allowedChars = "";
+    let password = "";
 
-        // Get selected options
-        var includeLetters = document.getElementById("lettersCheckbox").checked;
-        var includeNumbers = document.getElementById("numbersCheckbox").checked;
-        var includePunctuation = document.getElementById("punctuationCheckbox")
-        .checked;
+    allowedChars += lowercaseChar ? lowerCase : "";
+    allowedChars += uppercaseChar ? upperCase : "";
+    allowedChars += numbers ? numbersChars : "";
+    allowedChars += symbols ? symbolsChars : "";
 
-        // Generate new password
-        var password = generatePassword(
-            length,
-            includeLetters,
-            includeNumbers,
-            includePunctuation
-        );
-
-        // Display new password
-        passwordOutput.textContent = "Generated password: " + password;
-
-        // Enable copy functionality
-        enableCopy(password);
-    });
-
-    document.getElementById("copyButton").addEventListener("click", function () {
-        var passwordOutput = document.getElementById("passwordOutput");
-
-        // Copy password to clipboard
-        copyToClipboard(
-            passwordOutput.textContent.replace("Generated password: ", "")
-        );
-        //alert("Password copied to clipboard!");
-    });
-
-function generatePassword(
-    length,
-    includeLetters,
-    includeNumbers,
-    includePunctuation
-)   {
-        var charset = "";
-        if (includeLetters) {
-            charset += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    if (allowedChars.length === 0) {
+        passwordResult.textContent = "You have to select at least 1 set of characters.";
+    } else {
+        for (let i = 0; i < passwordLength; i++) {
+            const randomChars = Math.floor(Math.random() * allowedChars.length);
+            password += allowedChars[randomChars];
         }
-        if (includeNumbers) {
-            charset += "0123456789";
-        }
-        if (includePunctuation) {
-            charset += "!@#$%^&*()-_+=~`[]{}|:;\"'<>,.?/";
-        }
-
-        var password = "";
-        for (var i = 0; i < length; i++) {
-            var randomIndex = Math.floor(Math.random() * charset.length);
-            password += charset.charAt(randomIndex);
-        }
-
-        return password;
+        passwordResult.textContent = `Your password is: ${password}`;
+        showCopyButton();
     }
-
-function enableCopy(password) {
-    var copyButton = document.getElementById("copyButton");
-
-    copyButton.style.display = "block";
-    copyButton.addEventListener("click", function () {
-        copyToClipboard(password);
-        //alert("Password copied to clipboard!");
-    });
 }
 
-function copyToClipboard(text) {
-    var tempInput = document.createElement("input");
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand("copy");
-    document.body.removeChild(tempInput);
-}
+function copyPassword() {
+    const passwordResult = document.getElementById("passwordResult");
+    const passwordText = passwordResult.textContent;
+    const password = passwordText.split(": ")[1]; // Extracting the password part after ": "
 
-// Copy Button
-copyButton.addEventListener('click', () => {
-    // Select the password text
-    const selection = window.getSelection();
-    const range = document.createRange();
-    range.selectNodeContents(passwordOutput);
-    selection.removeAllRanges();
-    selection.addRange(range);
-
-    // Prompt the user to copy the text
+    const textarea = document.createElement('textarea');
+    textarea.value = password;
+    document.body.appendChild(textarea);
+    textarea.select();
     document.execCommand('copy');
+    document.body.removeChild(textarea);
 
-    // Clear the selection
-    selection.removeAllRanges();
+    const popup = document.getElementById('popup');
+    popup.style.display = 'block';
 
-    // Change the copy button text
-    copyButton.textContent = 'Copied!';
-});
+    setTimeout(function() {
+        popup.style.display = 'none';
+    }, 2000); 
+}
+
+function showCopyButton() {
+    const copyBtn = document.getElementById('copyBtn');
+    copyBtn.style.display = 'inline-block';
+}
+
