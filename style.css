@@ -151,7 +151,8 @@ h1{
 .popup {
     display: none;
     position: fixed;
-    bottom: 70px;
+    bottom: -70px; 
+    left: calc(50% - 100px);
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
