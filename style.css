@@ -1,90 +1,187 @@
-body {
-        background-image: url(Gen-Pass.jpg);
-        background-color: rgba(87, 97, 239, 0.888);
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    background-image: url('bg-img.jpg'); 
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow: hidden;
+    
+}
 
-.container {
+.container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
 }
 
-.card {
-    width: 600px;
-    max-width: 95%;
+.card{
+    text-align: center;;
+    max-width: 700px;
+    margin: auto;
     padding: 20px;
-    border: 1px solid rgb(255 79 90);
     border-radius: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    background-color: rgba(250, 229, 229, 0.94);
+    box-shadow: 5px 5px 10px rgb(250, 128, 128);
+    background-color: rgba(255, 255, 255, 0.618);
+    backdrop-filter: blur(3px);
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: rgb(255 79 90);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+h1{
+    font-size: 2.5em;
+    font-weight: bold;
 }
 
-.txt-color{
-    color: #002d8e;
+.options {
+    text-align: center; /* Center the label and checkboxes */
+    margin-bottom: 20px; /* Add some space between options and slider */
 }
 
-.txt-bold{
-    font-weight: 400;
-}
-
-.slider-container {
+.slider{
     position: relative;
 }
 
-.options-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.options-container label {
-    margin-right: 10px;
-}
-
-.slider-value {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.slider-value span {
-    font-weight: bold;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-form {
-    margin-bottom: 10px;
-}
-
-button {
+#rangeValue {
+    position: relative;
     display: block;
-    margin-top: 10px;
-    width: 100%;
-    padding: 5px 10px;
+    text-align: center;
+    font-size: 6em;
+    color: #999;
+    font-weight: 400;
 }
 
-#passwordOutput {
+.range {
+    width: 400px;
+    height: 15px;
+    -webkit-appearance: none;
+    background: #111;
+    outline: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+    position: absolute; /* Position the slider absolutely */
+    top: 100px; /* Adjust the top position as needed */
+    left: 50%; /* Move the slider to the center */
+    transform: translateX(-50%); /* Center the slider horizontally */
+}
+
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #00fd0a;
+    cursor: pointer;
+    border: 4px solid #333;
+    box-shadow: -407px 0 0 400px #00fd0a;
+}
+
+#lbl1{
+    font-size: 1.5em;
     font-weight: bold;
+    color:rgb(254, 113, 113);
+    margin-bottom: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-  /* Media query for responsiveness */
-@media (max-width: 600px) {
+.chkBox{
+    margin-top: 25px;
+}
+
+.chkBoxLabel{
+    font-size: 1em;
+    margin-left: 0.5px;
+    margin-right: 25px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#submit{
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    padding: 7px;
+    color: white;
+    background-color: hsl(214, 97%, 62%);
+    border: none;
+    border-radius: 7px;
+}
+
+.password-container {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+}
+
+#passwordResult {
+    flex-grow: 1;
+    font-size: 1.3em;
+    text-align: center;
+    margin-right: 20px;
+    padding-right: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: inline-block; 
+}
+
+#copyBtn {
+    background-color: transparent;
+    color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
+
+#copyBtn img {
+    max-width: 20px;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 9999;
+}
+
+/* For screens smaller than 600px (e.g., smartphones) */
+@media only screen and (max-width: 600px) {
     .card {
-        width: 90%;
+        max-width: 90%; /* Adjust the maximum width as needed */
+        padding: 10px;
     }
 }
+
+/* For screens between 600px and 900px (e.g., tablets) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    .card {
+        max-width: 70%; /* Adjust the maximum width as needed */
+        padding: 10px;
+    }
+}
+
+/* For screens larger than 900px (e.g., desktops) */
+@media only screen and (min-width: 901px) {
+    .card {
+        max-width: 550px; /* Reset the maximum width */
+        padding: 10px;
+    }
+}
+
